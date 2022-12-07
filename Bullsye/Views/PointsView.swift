@@ -24,7 +24,7 @@ struct PointsView: View {
                 .kerning(-1.0)
                 .font(.largeTitle)
                 .fontWeight(.black)
-            BodyText(labelText: "you scored \(game.gain) points\n 🎉🎉🎉")
+            BodyText(text: "you scored \(game.gain) points\n 🎉🎉🎉")
             Button(action:{
                 withAnimation{
                     isAlertVisible.toggle()
@@ -33,7 +33,7 @@ struct PointsView: View {
               
 
             }){
-                ButtonText(labelText: "Start A new game")
+                ButtonText(text: "Start A new game")
 
             }
         }

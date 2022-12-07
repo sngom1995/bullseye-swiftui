@@ -16,19 +16,11 @@ struct ContentView: View {
         ZStack{
             BackgroungView(game: $game)
             VStack{
-                Text("🎯🎯🎯\nPUT THE BULLSEYE AS CLOSE AS YOU CAN".uppercased())
-                    .bold()
-                    .kerning(2.0)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(4.0)
-                    .font(.footnote)
-                    .foregroundColor(Color("TextColor"))
+                InstructionText(text:"🎯🎯🎯\nPUT THE BULLSEYE AS CLOSE AS YOU CAN")
                 
                  
-                    Text("\(game.target)")
-                        .kerning(-1.0)
-                        .font(.largeTitle)
-                        .fontWeight(.black)
+                    BigNumberText(text: String(game.target))
+                        
                     
                         .padding(.bottom, isAlertVisibe ?  0 : 100)
                         .padding()

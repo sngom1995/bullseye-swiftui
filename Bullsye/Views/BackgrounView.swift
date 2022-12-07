@@ -30,7 +30,7 @@ struct TopView: View {
             Button(action: {
                 game.restartGame()
             }){
-                RoundedImageViewSroked(systemName: "arrow.counterclockwise")
+                RoundedImageViewFilled(systemName: "arrow.counterclockwise")
             }
             Spacer()
             RoundedImageViewFilled(systemName: "list.dash")
@@ -43,8 +43,8 @@ struct NumberView: View {
     var score: Int
     var body: some View{
         VStack{
-            LabelText(labelText: title)
-            RoundeRectText(text: score)
+            LabelText(text: title)
+           RoundRectTextView(text: String(score))
         }
     }
 }
