@@ -30,6 +30,7 @@ struct PointsView: View {
                     isAlertVisible.toggle()
                 }
                 game.startsNewRound(points: game.points(sliderValue: Int(sliderValue)))
+                game.addEntryToleaderboard(point: game.points(sliderValue: Int(sliderValue)))
               
 
             }){

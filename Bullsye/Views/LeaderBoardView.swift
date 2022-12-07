@@ -9,14 +9,23 @@
 import SwiftUI
 
 struct LeaderboardView: View {
+    @Binding var isLeaderBordVisible : Bool
+    @Binding var game: Game
   var body: some View {
     ZStack {
       Color("BackgroundColor").edgesIgnoringSafeArea(.all)
-      VStack(spacing: 10) {
-        HeaderView()
-        LabelView()
-        RowView(index: 1, score: 10, date: Date())
-      }
+        VStack(spacing: 10) {
+            HeaderView(isLeaderBordVisible: $isLeaderBordVisible)
+            LabelView()
+            ScrollView{
+                VStack(spacing: 10.0){
+                    ForEach(game.leaderboadEntries.indices){i in
+                        RowView(index: i, score: game.leaderboadEntries[i].score, date: game.leaderboadEntries[i].date)}
+                    
+                }
+            }}
+        .frame(width: .infinity)
+        .padding(.top, 20)
     }
   }
 }
@@ -47,12 +56,16 @@ struct RowView: View {
 }
 
 struct HeaderView: View {
+    @Binding var isLeaderBordVisible : Bool
+
   var body: some View {
     ZStack {
       BigBoldText(text: "Leaderboard")
       HStack {
         Spacer()
-        Button(action: {}) {
+        Button(action: {
+            isLeaderBordVisible.toggle()
+        }) {
           RoundedImageViewFilled(systemName: "xmark")
             .padding(.trailing)
         }
@@ -81,12 +94,12 @@ struct LabelView: View {
 
 struct LeaderboardView_Previews: PreviewProvider {
   static var previews: some View {
-    LeaderboardView()
-    LeaderboardView()
+      LeaderboardView(isLeaderBordVisible: .constant(false), game: .constant(Game()))
+    LeaderboardView(isLeaderBordVisible: .constant(false),game: .constant(Game()))
       .previewLayout(.fixed(width: 568, height: 320))
-    LeaderboardView()
+    LeaderboardView(isLeaderBordVisible: .constant(false),game: .constant(Game()))
       .preferredColorScheme(.dark)
-    LeaderboardView()
+    LeaderboardView(isLeaderBordVisible: .constant(false),game: .constant(Game()))
       .preferredColorScheme(.dark)
       .previewLayout(.fixed(width: 568, height: 320))
   }
